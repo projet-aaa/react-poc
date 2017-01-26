@@ -1,0 +1,23 @@
+{
+  "name": "front-end",
+  "version": "1.0.0",
+  "description": "A react-redux todo boilerplate coded in typescript",
+  "main": "index.js",
+  "author": "GibsS",
+  "license": "ISC",
+  "dependencies": {
+    "browserify": "^14.0.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^3.1.4",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.2",
+    "react-router": "^3.0.2",
+    "redux": "^3.6.0",
+    "redux-actions": "^1.2.0",
+    "typescript": "^2.1.5",
+    "typings": "^2.1.0",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}

@@ -4,7 +4,7 @@ import { handleActions } from "redux-actions";
 import { Todo } from "../models/models"
 
 const reducer = handleActions({
-    [ActionTypes.REMOVE_TODO]: function(state: Todo[] = [], action: Action<AddTodoAction>): Todo[] {
+    [ActionTypes.REMOVE_TODO]: function(state: Todo[] = [], action: Action<RemoveTodoAction>): Todo[] {
         let res = []
 
         for(let e of state) {

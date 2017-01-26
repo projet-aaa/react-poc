@@ -6,7 +6,7 @@ import { Router, Route, hashHistory } from 'react-router'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux';
 
-import reducer from './reducers/reducers'
+import reducer from './main/reducer'
 import App from './containers/todoApp'
 import Stuff from './views/stuff'
 

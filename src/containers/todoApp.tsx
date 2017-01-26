@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux";
 import { Link } from "react-router"
 import { createSelector } from "reselect"
 
-import { addTodo, removeTodo, close, open } from "../actions/actions";
+import { addTodo, removeTodo, close, open, requestTodo } from "../actions/actions";
 import { Todo } from "../models/models"
 import TodoView from "../views/todo"
 
@@ -22,12 +22,12 @@ interface DispatchProps {
     removeTodo(id: number)
     close()
     open()
+    requestTodo()
 }
 
 type Props = StateProps & DispatchProps;
 
 function mapStateToProps(state: any): StateProps {
-    console.log(state.stuff.enabled)
     return { todos: getTodos(state), enabled: state.stuff.enabled }
 }
 
@@ -36,7 +36,8 @@ function mapDispatchToProps(dispatch): DispatchProps {
         addTodo: (id: number, text: string) => dispatch(addTodo(id, text)),
         removeTodo: (id: number) => dispatch(removeTodo(id)),
         close: () => dispatch(close()),
-        open: () => dispatch(open())
+        open: () => dispatch(open()),
+        requestTodo: () => dispatch(requestTodo())
     } // bindActionCreators({ addTodo, removeTodo }, dispatch)
 }
 
@@ -55,7 +56,8 @@ class TodoApp extends React.Component<Props, any> {
             addTodo,
             removeTodo,
             close,
-            open
+            open,
+            requestTodo
         } = this.props;
         
         var todoItems = todos.length ? todos.map(item => {
@@ -68,7 +70,8 @@ class TodoApp extends React.Component<Props, any> {
                 <input type="text" id="input"></input>
                 Add todo <button onClick= { () => { addTodo(this.n++, getText('input')) } }>Add todo</button>
                 <button onClick={ close }>Close</button><button onClick={ open }>Open</button>
-                Is open? : { enabled.toString() }
+                Is open? : { enabled.toString() } <br/>
+                <button onClick= { requestTodo }>Add a todo from the server</button>
             </div>
         );
     }

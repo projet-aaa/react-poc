@@ -3,7 +3,11 @@ export const ActionTypes = {
     REMOVE_TODO: "REMOVE_TODO",
 
     OPEN: "OPEN",
-    CLOSE: "CLOSE"
+    CLOSE: "CLOSE",
+
+    ASK_TODO: "ASK_TODO",
+    REQUEST_TODO: "REQUEST_TODO",
+    RECEIVE_TODO: "RECEIVE_TODO"
 }
 
 export interface AddTodoAction {
@@ -16,3 +20,12 @@ export interface RemoveTodoAction {
 }
 
 export interface GeneralAction { }
+
+export interface AskTodoAction { }
+
+export interface RequestTodoAction { }
+
+export interface ReceiveTodoAction { 
+    text: string
+    receivedAt: number
+}

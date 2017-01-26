@@ -1,7 +1,9 @@
 /// <reference path="../../typings/index.d.ts" />
 
+import * as fetch from 'isomorphic-fetch'
+
 import { Action } from '../utils/index'
-import { ActionTypes, AddTodoAction, RemoveTodoAction, GeneralAction } from "./actionTypes"
+import { ActionTypes, AddTodoAction, RemoveTodoAction, GeneralAction, AskTodoAction, RequestTodoAction, ReceiveTodoAction } from "./actionTypes"
 
 export function addTodo(id: number, text: string): Action<AddTodoAction> {
     return {
@@ -32,5 +34,41 @@ export function open(): Action<GeneralAction> {
     return {
         type: ActionTypes.OPEN,
         payload: {}
+    }
+}
+
+function askTodo(): Action<AskTodoAction> {
+    return {
+        type: ActionTypes.ASK_TODO,
+        payload: {}
+    }
+}
+
+export function receiveTodo(text): Action<ReceiveTodoAction> {
+    console.log("receiveTodo!")
+    return {
+        type: ActionTypes.RECEIVE_TODO,
+        payload: { 
+            text: text,
+            receivedAt: Date.now()
+        }
+    }
+}
+
+export function requestTodo() {
+    return function (dispatch) {
+        dispatch(askTodo())
+        return new Promise(
+            function(resolve, reject) {
+                setTimeout(
+                    function() {
+                        resolve();
+                }, 1000);
+            }
+        ).then(() => dispatch(receiveTodo("Ceci est un test")))
+        // fetch('http://localhost:8000/')
+        //     .then(response => response.json())
+        //     .then(json =>
+        //     )
     }
 }

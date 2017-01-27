@@ -1,5 +1,6 @@
 node_modules/
 .tmp/
 dist/
+!dist/todo.json
 typings/index.d.ts
 typings/modules/

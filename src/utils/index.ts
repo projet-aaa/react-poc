@@ -4,6 +4,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
 import * as ReactDOM from 'react-dom'
 import * as React from 'react'
+import * as createLogger from 'redux-logger';
 
 import createSocketIoMiddleware from 'redux-socket.io'
 import * as io from 'socket.io-client'
@@ -16,7 +17,7 @@ export interface Action<T>{
 }
 
 // -- STORE CREATOR HELPER
-export const storeFactory = (reducers: any[], url: string) => {
+export const storeFactory = (reducers: any[], url: string, log: boolean) => {
     let socket = io.connect(url),
         reducers2 = {}, len = reducers.length,
         reducer = null
@@ -25,12 +26,14 @@ export const storeFactory = (reducers: any[], url: string) => {
         Object.assign(reducers2, reducers[i])
     }
 	reducer = combineReducers(reducers2)
+
+    let middlewares = [thunk]
+
+    if(url) { middlewares.push(createSocketIoMiddleware(socket, 'SERVER/')) }
+    if(log) { middlewares.push(createLogger()) }
     return createStore(
         reducer,
-        applyMiddleware(
-            thunk,
-            createSocketIoMiddleware(socket, 'SERVER/')
-        )
+        applyMiddleware(...middlewares)
     )
 }
 

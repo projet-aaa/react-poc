@@ -1,6 +1,6 @@
 import * as React from "react";
 
-interface Props {
+export interface Props {
     removeTodo(): void
     id: number
     text: string

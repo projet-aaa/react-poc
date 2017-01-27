@@ -2,6 +2,8 @@
 
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
+import * as ReactDOM from 'react-dom'
+import * as React from 'react'
 
 import createSocketIoMiddleware from 'redux-socket.io'
 import * as io from 'socket.io-client'
@@ -30,4 +32,8 @@ export const storeFactory = (reducers: any[], url: string) => {
             createSocketIoMiddleware(socket, 'SERVER/')
         )
     )
+}
+
+export function viewTestFactory<T>(View: React.component<T, any>, props: T) {
+    ReactDOM.render(React.createElement(View, props), document.getElementById('main'))
 }

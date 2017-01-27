@@ -3,7 +3,7 @@
         "module": "umd",
         "jsx": "react",
         "moduleResolution": "node",
-        // "baseUrl": ".",
+        "baseUrl": ".",
         "experimentalDecorators": true,
         "target": "es6"
     },

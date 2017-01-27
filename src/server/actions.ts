@@ -6,7 +6,7 @@ interface SendTextAction {
 
 export function sendText(text: string): Action<SendTextAction> {
     return {
-        type : 'server/msg',
+        type : 'SERVER/MSG',
         payload: { text }
     }
 }

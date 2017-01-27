@@ -10,7 +10,7 @@ io.on('connection', function(socket){
     console.log("Socket connected: " + socket.id);
     socket.on('action', function(action) {
         console.log(action)
-        if(action.type === 'server/msg'){
+        if(action.type === 'SERVER/MSG'){
             console.log("msg: " + action.payload.text )      
             socket.emit('action', {type:'message', data:'good day!'});
         }

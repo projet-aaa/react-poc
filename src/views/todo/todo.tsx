@@ -1,10 +1,8 @@
 import * as React from "react";
 
-import { Todo } from "../models/models"
-
 interface Props {
     removeTodo(): void
-    key: number
+    id: number
     text: string
 }
 
@@ -15,12 +13,12 @@ export default class TodoView extends React.Component<Props, any> {
     render() {
         const {
             removeTodo,
-            key,
+            id,
             text
          } = this.props;
 
         return (
-            <li> { text } <button onClick={ removeTodo } >Delete</button> </li>
+            <li> { text } : { id } <button onClick={ removeTodo } >Delete</button> </li>
         );
     }
 }

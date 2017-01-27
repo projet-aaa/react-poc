@@ -29,6 +29,12 @@ const reducer = handleActions({
             ...state,
             { id: getRandomInt(0, 1000), text: action.payload.text }
         ]
+    },
+    message: function(state: Todo[] = [], action): Todo[] {
+        return [
+            ...state,
+            { id: getRandomInt(0, 1000), text: action.data }
+        ]
     }
 }, [{ id: 0, text: 'Un élément de todo'}, { id: 1, text: 'Un autre élément de todo' }]);
 

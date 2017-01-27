@@ -58,17 +58,16 @@ export function receiveTodo(text): Action<ReceiveTodoAction> {
 export function requestTodo() {
     return function (dispatch) {
         dispatch(askTodo())
-        return new Promise(
-            function(resolve, reject) {
-                setTimeout(
-                    function() {
-                        resolve();
-                }, 1000);
-            }
-        ).then(() => dispatch(receiveTodo("Ceci est un test")))
-        // fetch('http://localhost:8000/')
-        //     .then(response => response.json())
-        //     .then(json =>
-        //     )
+        // return new Promise(
+        //     function(resolve, reject) {
+        //         setTimeout(
+        //             function() {
+        //                 resolve();
+        //         }, 1000);
+        //     }
+        // ).then(() => dispatch(receiveTodo("Ceci est un test")))
+        return fetch('http://localhost:8000/static/todo.json')
+            .then(response => response.json())
+            .then(json => dispatch(receiveTodo(json.text)))
     }
 }

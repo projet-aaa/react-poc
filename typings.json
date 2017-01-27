@@ -3,5 +3,8 @@
     "isomorphic-fetch": "github:nozzlegear/isomorphic-fetch.d.ts",
     "react-dom": "registry:npm/react-dom#15.0.1+20160826174104",
     "react-router": "registry:npm/react-router#2.4.0+20160915183637"
+  },
+  "globalDependencies": {
+    "socket.io-client": "registry:dt/socket.io-client#1.4.4+20161116080703"
   }
 }

@@ -7,6 +7,7 @@ import { Link } from "react-router"
 import { createSelector } from "reselect"
 
 import { addTodo, removeTodo, close, open, requestTodo } from "../actions/actions";
+import { sendText } from "../server/actions"
 import { Todo } from "../models/models"
 import TodoView from "../views/todo"
 
@@ -23,6 +24,7 @@ interface DispatchProps {
     close()
     open()
     requestTodo()
+    sendText(text: string)
 }
 
 type Props = StateProps & DispatchProps;
@@ -37,7 +39,8 @@ function mapDispatchToProps(dispatch): DispatchProps {
         removeTodo: (id: number) => dispatch(removeTodo(id)),
         close: () => dispatch(close()),
         open: () => dispatch(open()),
-        requestTodo: () => dispatch(requestTodo())
+        requestTodo: () => dispatch(requestTodo()),
+        sendText: (text: string) => dispatch(sendText(text))
     } // bindActionCreators({ addTodo, removeTodo }, dispatch)
 }
 
@@ -57,7 +60,8 @@ class TodoApp extends React.Component<Props, any> {
             removeTodo,
             close,
             open,
-            requestTodo
+            requestTodo,
+            sendText
         } = this.props;
         
         var todoItems = todos.length ? todos.map(item => {
@@ -71,7 +75,8 @@ class TodoApp extends React.Component<Props, any> {
                 Add todo <button onClick= { () => { addTodo(this.n++, getText('input')) } }>Add todo</button>
                 <button onClick={ close }>Close</button><button onClick={ open }>Open</button>
                 Is open? : { enabled.toString() } <br/>
-                <button onClick= { requestTodo }>Add a todo from the server</button>
+                <button onClick= { requestTodo }>Add a todo from the server</button><br/>
+                <button onClick= { () => sendText('hello') }>Send message through socket</button>
             </div>
         );
     }

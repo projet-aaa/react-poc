@@ -1,10 +1,12 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router"
+import * as MediaQuery from "react-responsive"
 
 import { Todo } from "../../models/models"
 
 import TodoView from "../../views/todo/todo"
+
 
 export interface StateProps {
     todos: Todo[]
@@ -41,16 +43,18 @@ export class View extends React.Component<Props, any> {
         }) : [];
         return (
             <div>
-                <Link to="/stuff">Goto stuff</Link>
-                <ul>
-                    { todoItems }
-                </ul>
-                <input type="text" id="input"></input>
-                Add todo <button onClick= { () => { addTodo(this.n++, getText('input')) } }>Add todo</button>
-                <button onClick={ close }>Close</button><button onClick={ open }>Open</button>
-                Is open? : { enabled.toString() } <br/>
-                <button onClick= { requestTodo }>Add a todo from the server</button><br/>
-                <button onClick= { () => sendText('hello') }>Send message through socket</button>
+                <MediaQuery query="(min-width: 400px)">
+                    <Link to="/stuff">Goto stuff</Link>
+                    <ul>
+                        { todoItems }
+                    </ul>
+                    <input type="text" id="input"></input>
+                    Add todo <button onClick= { () => { addTodo(this.n++, getText('input')) } }>Add todo</button>
+                    <button onClick={ close }>Close</button><button onClick={ open }>Open</button>
+                    Is open? : { enabled.toString() } <br/>
+                    <button onClick= { requestTodo }>Add a todo from the server</button><br/>
+                    <button onClick= { () => sendText('hello') }>Send message through socket</button>
+                </MediaQuery>
             </div>
         );
     }

@@ -4,7 +4,7 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server)
 var path = require('path');
 
-app.use('/static', express.static(__dirname + '../../../dist'))
+app.use('/static', express.static('../../dist'))
 
 io.on('connection', function(socket){
     console.log("Socket connected: " + socket.id);

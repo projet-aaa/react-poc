@@ -5,12 +5,13 @@ import * as React from 'react'
 import { Router, Route, hashHistory } from 'react-router'
 import { Provider } from 'react-redux';
 
-import quizInfo from '../../store/quiz/reducers/reducer'
-import App from '../../containers/quiz/quizApp'
+import quizInfo from '../../store/quiz/reducers/quiz'
+import remoteInfo from '../../store/quiz/reducers/remote'
+import App from '../../containers/quiz/remoteContainer'
 
 import { storeFactory } from '../../utils'
 
-let store = storeFactory([quizInfo], "localhost:8000", true)
+let store = storeFactory([quizInfo, remoteInfo], "localhost:8000", true)
 
 let MainRouter =
 (<Provider store={store}>

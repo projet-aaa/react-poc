@@ -6,12 +6,10 @@ import { ActionTypes, ChooseAction, ValidateAction} from "../actions/actionTypes
 import { Quiz, QuizType } from "../../../models/quiz"
 
 interface QuizInfo {
-    current: number
     quiz: Quiz[]
 }
 
-let initialState: QuizInfo = { 
-    current: 0,
+let initialState: QuizInfo = {
     quiz: [{
         id: 0,
         type: QuizType.MCQ,
@@ -52,8 +50,7 @@ const reducer = handleActions({
                     })
                 }
                 return q
-            }),
-            current: state.current + 1
+            })
         })
     }
 }, initialState);

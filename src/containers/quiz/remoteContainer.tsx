@@ -1,20 +1,19 @@
 import { connect } from "react-redux";
 
-import { validateAction, chooseAction } from "../../store/quiz/actions/actions"
+import { validateAction } from "../../store/quiz/actions/actions"
 
 import { Quiz } from "../../models/quiz"
 
-import { StateProps, ActionProps, View } from "../../views/quiz/quizView"
+import { StateProps, ActionProps, View } from "../../views/quiz/remoteView"
 
 function mapStateToProps(state: any): StateProps {
     return { 
-        quiz: state.quiz.quiz[state.quiz.current]
+        quiz: state.quiz.quiz[state.remote.currentQuiz]
     }
 }
 function mapDispatchToProps(dispatch): ActionProps {
     return {
-        choose: (quizId, i) => dispatch(chooseAction(quizId, i)),
-        validate: (quizId) => dispatch(validateAction(quizId))
+        validateAnswer: (quizId) => dispatch(validateAction(quizId))
     }
 }
 

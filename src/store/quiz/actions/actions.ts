@@ -3,18 +3,20 @@ import * as fetch from 'isomorphic-fetch'
 import { Action } from '../../../utils'
 import { ActionTypes, ValidateAction, ChooseAction} from './actionTypes'
 
-export function validateAction(): Action<ValidateAction> {
+export function validateAction(id: number): Action<ValidateAction> {
     return {
         type: ActionTypes.VALIDATE,
-        payload: { }
+        payload: { 
+            id
+        }
     }
 }
 
-export function chooseAction(chosen: number): Action<ChooseAction> {
+export function chooseAction(id: number, chosen: number): Action<ChooseAction> {
     return {
         type: ActionTypes.CHOOSE,
         payload: {
-            chosen: chosen
+            id, chosen
         }
     }
 }

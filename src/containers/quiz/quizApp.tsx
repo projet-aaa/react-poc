@@ -8,15 +8,16 @@ import { StateProps, ActionProps, View } from "../../views/quiz/quizView"
 
 function mapStateToProps(state: any): StateProps {
     return { 
-        question: state.quiz.question,
-        answers: state.quiz.answers,
-        chosen: state.quiz.chosen
+        quizId: state.quiz.current,
+        question: state.quiz.quiz[state.quiz.current].question,
+        answers: state.quiz.quiz[state.quiz.current].answers,
+        chosen: state.quiz.quiz[state.quiz.current].chosen
     }
 }
 function mapDispatchToProps(dispatch): ActionProps {
     return {
-        choose: (i) => dispatch(chooseAction(i)),
-        validate: () => dispatch(validateAction())
+        choose: (quizId, i) => dispatch(chooseAction(quizId, i)),
+        validate: (quizId) => dispatch(validateAction(quizId))
     }
 }
 

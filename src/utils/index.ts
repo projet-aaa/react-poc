@@ -37,6 +37,7 @@ export const storeFactory = (reducers: any[], url: string, log: boolean) => {
     )
 }
 
+// -- TEST HELPER
 export function viewTestFactory<T>(View: React.component<T, any>, props: T) {
     ReactDOM.render(React.createElement(View, props), document.getElementById('main'))
 }

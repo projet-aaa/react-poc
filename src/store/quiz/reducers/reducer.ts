@@ -1,30 +1,50 @@
-import { handleActions } from "redux-actions";
+import { handleActions } from "redux-actions"
+import * as imm from "immutable"
 
-import { Action } from "../../../utils/index";
-import { ActionTypes, ChooseAction, ValidateAction} from "../actions/actionTypes";
+import { Action } from "../../../utils"
+import { ActionTypes, ChooseAction, ValidateAction} from "../actions/actionTypes"
 import { Quiz } from "../../../models/quiz"
+
+interface QuizInfo {
+    current: number
+    quiz: Quiz[]
+}
 
 const name = "quiz"
 const reducer = handleActions({
-    [ActionTypes.CHOOSE]: function(state: Quiz, action: Action<ChooseAction>): Quiz {
-        let res = Object.assign({}, state)
-        
-        res.chosen = action.payload.chosen
-
-        return res
+    [ActionTypes.CHOOSE]: function(state: QuizInfo, action: Action<ChooseAction>): QuizInfo {
+        return Object.assign({}, state, {
+            quiz: state.quiz.map(q => {
+                if(q.id == action.payload.id) {
+                    return Object.assign({}, q, {
+                        chosen: action.payload.chosen
+                    })
+                }
+                return q
+            })
+        })
     },
-    [ActionTypes.VALIDATE]: function(state: Quiz, action: Action<ValidateAction>): Quiz {
-        let res = Object.assign({}, state)
-        
-        res.isValidated = true
-
-        return res
+    [ActionTypes.VALIDATE]: function(state: QuizInfo, action: Action<ValidateAction>): QuizInfo {
+        return Object.assign({}, state, {
+            quiz: state.quiz.map((q, index) => {
+                if(q.id == action.payload.id) {
+                    return Object.assign({}, q, {
+                        isValidated: true
+                    })
+                }
+                return q
+            })
+        })
     }
 }, { 
-    question: "Ceci est une question?",
-    answers: ["ok", "oui", "non"],
-    chosen: -1,
-    isValidated: false
+    current: 0,
+    quiz: [{
+        id: 0,
+        question: "Ceci est une question?",
+        answers: ["ok", "oui", "non"],
+        chosen: -1,
+        isValidated: false
+    }]
 });
 
 export default { [name]: reducer }

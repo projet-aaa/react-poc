@@ -6,13 +6,14 @@ import * as MediaQuery from "react-responsive"
 import { View as AnswerView} from "./answerView"
 
 export interface StateProps {
-   question: string
-   answers: string[]
-   chosen: number
+    quizId: number
+    question: string
+    answers: string[]
+    chosen: number
 }
 export interface ActionProps {
-    choose(chosenNb: number)
-    validate()
+    choose(quizId: number, chosenNb: number)
+    validate(quizId: number)
 }
 
 export type Props = StateProps & ActionProps;
@@ -21,11 +22,12 @@ export class View extends React.Component<Props, any> {
 
     render() {
         const {
-            question,answers,chosen,choose,validate
+            quizId, question, answers, chosen,
+            choose, validate
         } = this.props;
 
         var answerItems = answers.length ? answers.map((item, i) => {
-            return <AnswerView key={item} text={item} choose={ () => { choose(i) } } chosen={ chosen == i }></AnswerView>;
+            return <AnswerView key={item} text={item} choose={ () => { choose(quizId, i) } } chosen={ chosen == i }></AnswerView>;
         }) : [];
         return (
             <div>
@@ -33,7 +35,7 @@ export class View extends React.Component<Props, any> {
                 <ul>
                     {answerItems}
                 </ul>
-                <button onClick={validate} > Valider </button>
+                <button onClick={ () => validate(quizId) } > Valider </button>
             </div>
         );
     }

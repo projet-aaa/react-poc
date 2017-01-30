@@ -5,7 +5,10 @@ export const ActionTypes = {
 
 
 export interface ChooseAction {
+    id: number
     chosen: number
 }
 
-export interface ValidateAction { }
+export interface ValidateAction {
+    id: number 
+}

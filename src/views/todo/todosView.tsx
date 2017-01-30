@@ -24,10 +24,11 @@ function getText(id: string) {
     return (document.getElementById('input') as HTMLInputElement).value
 }
 
+var n = 2
+
 type Props = StateProps & ActionProps;
 export class View extends React.Component<Props, any> {
     props: Props
-    n = 2
 
     render() {
         const {
@@ -48,7 +49,7 @@ export class View extends React.Component<Props, any> {
                         { todoItems }
                     </ul>
                     <input type="text" id="input"></input>
-                    Add todo <button onClick= { () => { addTodo(this.n++, getText('input')) } }>Add todo</button>
+                    Add todo <button onClick= { () => { addTodo(n++, getText('input')) } }>Add todo</button>
                     <button onClick={ close }>Close</button><button onClick={ open }>Open</button>
                     Is open? : { enabled.toString() } <br/>
                     <button onClick= { requestTodo }>Add a todo from the server</button><br/>

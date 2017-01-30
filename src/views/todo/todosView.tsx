@@ -7,7 +7,6 @@ import { Todo } from "../../models/models"
 
 import TodoView from "../../views/todo/todo"
 
-
 export interface StateProps {
     todos: Todo[]
     enabled: boolean

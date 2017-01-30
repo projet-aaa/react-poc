@@ -8,10 +8,7 @@ import { StateProps, ActionProps, View } from "../../views/quiz/quizView"
 
 function mapStateToProps(state: any): StateProps {
     return { 
-        quizId: state.quiz.current,
-        question: state.quiz.quiz[state.quiz.current].question,
-        answers: state.quiz.quiz[state.quiz.current].answers,
-        chosen: state.quiz.quiz[state.quiz.current].chosen
+        quiz: state.quiz.quiz[state.quiz.current]
     }
 }
 function mapDispatchToProps(dispatch): ActionProps {

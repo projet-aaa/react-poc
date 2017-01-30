@@ -1,12 +1,12 @@
 export const ActionTypes = {
-    CHOOSE: "CHOOSE",
-    VALIDATE: "VALIDATE"
+    CHOOSE: "QUIZ/CHOOSE",
+    VALIDATE: "QUIZ/VALIDATE"
 }
 
 
 export interface ChooseAction {
     id: number
-    chosen: number
+    choice: any
 }
 
 export interface ValidateAction {

@@ -12,11 +12,11 @@ export function validateAction(id: number): Action<ValidateAction> {
     }
 }
 
-export function chooseAction(id: number, chosen: number): Action<ChooseAction> {
+export function chooseAction(id: number, choice: any): Action<ChooseAction> {
     return {
         type: ActionTypes.CHOOSE,
         payload: {
-            id, chosen
+            id, choice
         }
     }
 }

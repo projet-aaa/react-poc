@@ -1,7 +1,13 @@
+export enum QuizType {
+    MCQ, TEXT
+}
+
 export interface Quiz {
     id: number
+    type: QuizType
     question: string
-    answers: string[]
-    chosen: number
+    choices: any
+
+    choice: any
     isValidated: boolean
 }

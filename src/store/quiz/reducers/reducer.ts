@@ -3,11 +3,30 @@ import * as imm from "immutable"
 
 import { Action } from "../../../utils"
 import { ActionTypes, ChooseAction, ValidateAction} from "../actions/actionTypes"
-import { Quiz } from "../../../models/quiz"
+import { Quiz, QuizType } from "../../../models/quiz"
 
 interface QuizInfo {
     current: number
     quiz: Quiz[]
+}
+
+let initialState: QuizInfo = { 
+    current: 0,
+    quiz: [{
+        id: 0,
+        type: QuizType.MCQ,
+        question: "Ceci est une question?",
+        choices: ["ok", "oui", "non"],
+        choice: -1,
+        isValidated: false
+    }, {
+        id: 1,
+        type: QuizType.TEXT,
+        question: "Tapez ce que vous pensez",
+        choices: null,
+        choice: "",
+        isValidated: false
+    }]
 }
 
 const name = "quiz"
@@ -17,7 +36,7 @@ const reducer = handleActions({
             quiz: state.quiz.map(q => {
                 if(q.id == action.payload.id) {
                     return Object.assign({}, q, {
-                        chosen: action.payload.chosen
+                        choice: action.payload.choice
                     })
                 }
                 return q
@@ -33,18 +52,10 @@ const reducer = handleActions({
                     })
                 }
                 return q
-            })
+            }),
+            current: state.current + 1
         })
     }
-}, { 
-    current: 0,
-    quiz: [{
-        id: 0,
-        question: "Ceci est une question?",
-        answers: ["ok", "oui", "non"],
-        chosen: -1,
-        isValidated: false
-    }]
-});
+}, initialState);
 
 export default { [name]: reducer }

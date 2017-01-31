@@ -1,5 +1,4 @@
 import { handleActions } from "redux-actions"
-import * as imm from "immutable"
 
 import { Action } from "../../../utils"
 import { ActionTypes, ChooseAction, ValidateAction} from "../actions/actionTypes"

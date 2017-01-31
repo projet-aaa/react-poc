@@ -1,7 +1,7 @@
 import * as fetch from 'isomorphic-fetch'
 
 import { Action } from '../../../utils'
-import { ActionTypes, ValidateAction, ChooseAction} from './actionTypes'
+import { ActionTypes, ValidateAction, ChooseAction, SignalAction} from './actionTypes'
 
 export function validateAction(id: number): Action<ValidateAction> {
     return {
@@ -21,3 +21,11 @@ export function chooseAction(id: number, choice: any): Action<ChooseAction> {
     }
 }
 
+export function signalAction(type: number): Action<SignalAction> {
+    return {
+        type: ActionTypes.SIGNAL,
+        payload: {
+            type
+        }
+    }
+}

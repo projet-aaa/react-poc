@@ -46,15 +46,13 @@ let initialState: QuizStatsArrayInfo = [
 const name = "quizStatsArray"
 const reducer = handleActions({
     [ActionTypes.LAUNCH]: function(state: QuizStatsArrayInfo, action: Action<LaunchAction>): QuizStatsArrayInfo {
-         return Object.assign({}, state, {
-            quizStatsArray: state.map(quiz => {
-                if(quiz.id == action.payload.id) {
-                    return Object.assign({}, quiz, {
-                        state: 1
-                    })
-                }
-                return quiz
-            })
+         return state.map(quiz => {
+            if(quiz.id == action.payload.id) {
+                return Object.assign({}, quiz, {
+                    state: 1
+                })
+            }
+            return quiz
         })
     },
 }, initialState);

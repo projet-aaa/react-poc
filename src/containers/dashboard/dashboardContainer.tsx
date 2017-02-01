@@ -8,7 +8,7 @@ import { StateProps, ActionProps, View } from "../../views/dashboard/dashboardVi
 
 function mapStateToProps(state: any): any {
     return { 
-        studentFeedback: state.feedbackState,
+        studentFeedback: state.studentFeedback,
         quizStatsArray: state.quizStatsArray
     }
 }

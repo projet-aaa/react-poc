@@ -39,7 +39,6 @@ export class View extends React.Component<Props, any> {
             launchQuiz
         } = this.props;
 
-
         var quizInfoItem = quizStatsArray.map((item,i) => {
             return <QuizLauncherView quizStats={item} key={i} id={i} launch={() => launchQuiz(i)}> </QuizLauncherView>;
         });
